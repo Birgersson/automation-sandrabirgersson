@@ -10,12 +10,21 @@ describe('Testsuite for navigation',function(){
         indexFuncs.checkTitleIndexPage(cy)
     }) //det här görs innan varje testfall 
 
+    afterEach(() => {
+        indexFuncs.logOut(cy,'Login')
+    }) //det här görs efter varje testfall 
+
     
     //test case XXX
         it('Navigate', function(){
 
-          indexFuncs.navigateToTesterHotelOverviewPage(cy, 'Login') //funkar. Men kanske man vill skicka med user och pwd ist? 
+          indexFuncs.validLogin(cy, 'Login') //funkar. Men kanske man vill skicka med user och pwd ist? 
 
         })
+
+
+
+
+
     })
     
