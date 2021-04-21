@@ -14,7 +14,10 @@ describe('Testsuite for navigation',function(){
         cy.visit(targets.base_url)
         indexFuncs.checkIndexPage(cy)
     }) 
-
+    afterEach(() => { //det här görs efter varje testfall 
+        overviewFuncs.logOut(cy)
+        indexFuncs.checkIndexPage(cy)
+    }) 
     //test case 3.1 Navigation 
         it('Navigate the site using View and Back-buttons', function(){
             indexFuncs.validLogin(cy, targets.user1, targets.pw1)  //Logga in 
@@ -39,4 +42,3 @@ describe('Testsuite for navigation',function(){
     })
     
 
-    //lägg till en log out... gärna med after each... 
