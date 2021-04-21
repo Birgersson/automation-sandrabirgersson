@@ -2,10 +2,10 @@
 //elements
 const navBackLink = ':nth-child(3) > .btn'
 const titleOfTesterHotelOverviewPage = 'Testers Hotel'
-const contentToConfirm = 'Clients'
+const contentToConfirm = 'Bills'
 
 //functions
-function checkClientsPage(cy){
+function checkBillsPage(cy){
     cy.title().should('eq', titleOfTesterHotelOverviewPage)
     cy.contains(contentToConfirm)
 }
@@ -15,5 +15,5 @@ function navigateBack(cy){
 //exports
 module.exports = {
     navigateBack,
-    checkClientsPage
+    checkBillsPage
 }

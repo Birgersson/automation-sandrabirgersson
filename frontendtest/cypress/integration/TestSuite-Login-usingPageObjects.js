@@ -2,26 +2,25 @@
 
 import * as indexFuncs from '../pages/indexpage'
 import * as overviewFuncs from '../pages/testerhoteloverviewpage'
+import * as targets from '../targets/targets'
 
 //test suite for Login
-
 describe('Testsuite for Login',function(){
-    beforeEach(() => {
-        cy.visit('http://localhost:3000')
-        indexFuncs.checkTitleIndexPage(cy)
-    }) //det här görs innan varje testfall 
-    
-    //test case Login
-        it('Login', function(){
 
-          indexFuncs.validLogin(cy, 'Login') //funkar. Men kanske man vill skicka med user och pwd ist? 
-            overviewFuncs.checkTitleOfTesterHotelOverviewPage(cy,overviewFuncs.checkTitleOfTesterHotelOverviewPage) 
-            indexFuncs.logOut(cy,'Login')
+    beforeEach(() => { //det här görs innan varje testfall 
+        cy.visit(targets.base_url)
+        indexFuncs.checkIndexPage(cy)
+    }) 
+    
+    //test case 1.1 Log in as user 1
+        it('Login', function(){
+            indexFuncs.validLogin(cy, targets.user1, targets.pw1, 'Tester Hotel Overview') 
+            overviewFuncs.checkTesterHotelOverviewPage(cy) 
+            overviewFuncs.logOut(cy,'Login')
         })
 
- //test case Login-fail
+    //test case 1.3 Log in as unauthorized user 
         it('Login Error', function(){
-
-            indexFuncs.enterUserAndPwOnIndexPage(cy, 'hej','hello','Bad username or password') //skickar in felaktig user. icke inloggad. 
+            indexFuncs.enterUserAndPwOnIndexPage(cy, targets.badusername,targets.badpw,'Bad username or password') //skickar in felaktig user. icke inloggad. 
           })
     })

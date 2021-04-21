@@ -1,11 +1,12 @@
 /// <reference types="cypress" /> 
 //elements
-const navBackLink = ':nth-child(3) > .btn'
+const navBackLink = 'a.btn:nth-child(1)'
 const titleOfTesterHotelOverviewPage = 'Testers Hotel'
-const contentToConfirm = 'Clients'
+const contentToConfirm = 'Reservations'
+
 
 //functions
-function checkClientsPage(cy){
+function checkReservationsPage(cy){
     cy.title().should('eq', titleOfTesterHotelOverviewPage)
     cy.contains(contentToConfirm)
 }
@@ -15,5 +16,5 @@ function navigateBack(cy){
 //exports
 module.exports = {
     navigateBack,
-    checkClientsPage
+    checkReservationsPage
 }

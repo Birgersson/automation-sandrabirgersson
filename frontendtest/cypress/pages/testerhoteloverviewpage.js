@@ -2,25 +2,40 @@
 
 //elements
 const titleOfTesterHotelOverviewPage = 'Testers Hotel'
-const navViewRoomLink = 'div.block:nth-child(1) > a:nth-child(3)'
-const navViewClientsLink = 'div.block:nth-child(2) > a:nth-child(3)'
-const navViewBillsink = 'div.block:nth-child(3) > a:nth-child(4)'
-const navViewReservationsLink = 'div.block:nth-child(4) > a:nth-child(4)'
-
+const navViewRoomLink = ':nth-child(1) > .btn'
+const navViewClientsLink = '.blocks > :nth-child(2) > .btn'
+const navViewBillsLink = ':nth-child(3) > .btn'
+const navViewReservationsLink = ':nth-child(4) > .btn'
+const navLogOut = '.user > .btn'
+const contentToConfirm = 'Tester Hotel Overview'
 
 //functions
-function checkTitleOfTesterHotelOverviewPage(cy){
+function checkTesterHotelOverviewPage(cy){
     cy.title().should('eq', titleOfTesterHotelOverviewPage)
-}
-
-function navigateToClientsPage(cy, contentToConfirm){
-    cy.get(navViewClientsLink).click()
     cy.contains(contentToConfirm)
 }
-
+function navigateToClientsPage(cy){
+    cy.get(navViewClientsLink).click()
+}
+function navigateToBillsPage(cy){
+    cy.get(navViewBillsLink).click()
+}
+function navigateToReservationsPage(cy){
+    cy.get(navViewReservationsLink).click()
+}
+function navigateToRoomsPage(cy ){
+    cy.get(navViewRoomLink).click()
+}
+function logOut (cy){
+    cy.get(navLogOut).click()
+}
 //exports
 module.exports = {
-    checkTitleOfTesterHotelOverviewPage,
-    navigateToClientsPage
+    checkTesterHotelOverviewPage,
+    navigateToClientsPage,
+    navigateToBillsPage,
+    navigateToReservationsPage,
+    navigateToRoomsPage,
+    logOut
 
 }
