@@ -2,36 +2,48 @@
 
 import * as indexFuncs from '../pages/indexpage'
 import * as overviewFuncs from '../pages/testerhoteloverviewpage'
+import * as clientsFunc from '../pages/clientspage'
+import * as newclientsFunc from '../pages/newclientspage'
 import * as targets from '../targets/targets'
 
-//test suite for new Client
-describe('Testsuite for Client',function(){
+//test suite for Clients
+describe('Testsuite for navigation',function(){
     beforeEach(() => { //det här görs innan varje testfall 
         cy.visit(targets.base_url)
-        indexFuncs.checkTitleIndexPage(cy)
+        indexFuncs.checkIndexPage(cy)
     }) 
- 
     afterEach(() => { //det här görs efter varje testfall 
-        indexFuncs.logOut(cy,'Login')
+        overviewFuncs.logOut(cy)
+        indexFuncs.checkIndexPage(cy)
     }) 
-
-    
     //test case Create Client 
         it('Create Client', function(){
-
-            indexFuncs.validLogin(cy, 'Login') //funkar. Men kanske man vill skicka med user och pwd ist? 
-            overviewFuncs.checkTitleOfTesterHotelOverviewPage(cy,overviewFuncs.checkTitleOfTesterHotelOverviewPage)
-            overviewFuncs.navigateToClientsPage(cy, 'Clients') //navigerar till clients view och kollar att det står Clients. 
+            indexFuncs.validLogin(cy, targets.user1, targets.pw1)  //Loggar in 
+            overviewFuncs.checkTesterHotelOverviewPage(cy)
+            overviewFuncs.navigateToClientsPage(cy)
+            clientsFunc.checkClientsPage(cy) //är på clientspage
+            clientsFunc.navigateCreateClient(cy)
+            newclientsFunc.checkNewClientsPage(cy) //är på new clientspage 
+            newclientsFunc.enterUser(cy, targets.name,targets.email,targets.tele)
+            newclientsFunc.ClickSaveNewClient(cy)
+            clientsFunc.checkClientsPage(cy)
+            clientsFunc.verifyUser(cy) 
         })
 
-
-    // test case Edit Client. 
-        it('Create Client', function(){
-
-            indexFuncs.validLogin(cy, 'Login') //funkar. Men kanske man vill skicka med user och pwd ist? 
-            overviewFuncs.checkTitleOfTesterHotelOverviewPage(cy,overviewFuncs.checkTitleOfTesterHotelOverviewPage)
-            overviewFuncs.navigateToClientsPage(cy, 'Clients') //navigerar till clients view och kollar att det står Clients. 
-  })
-
+    //edit client
+        it('Edit Client', function(){
+            indexFuncs.validLogin(cy, targets.user1, targets.pw1)  //Loggar in 
+            overviewFuncs.checkTesterHotelOverviewPage(cy)
+            overviewFuncs.navigateToClientsPage(cy)
+            clientsFunc.checkClientsPage(cy) //är på clientspage
+            clientsFunc.navigateCreateClient(cy)
+            newclientsFunc.checkNewClientsPage(cy) //är på new clientspage 
+            newclientsFunc.enterUser(cy, targets.name, targets.email,targets.tele)
+            newclientsFunc.ClickSaveNewClient(cy)
+            clientsFunc.checkClientsPage(cy)
+            clientsFunc.verifyUser(cy) 
+            clientsFunc.open1ClientSubMenu(cy) //Deleting the first client... making sure i can deletea client. But not the one I created.... 
+            clientsFunc.delete1Client(cy)
+        })
 
     })

@@ -3,7 +3,10 @@ module.exports = {
     user1 : 'tester01',
     pw1 : 'GteteqbQQgSr88SwNExUQv2ydb7xuf8c',
     badusername : 'hej',
-    badpw : 'hejhejhej'
+    badpw : 'hejhejhej',
+    name : 'This is a name',
+    email: 'Email@email.com',
+    tele: '0123456789'
     
 
 
