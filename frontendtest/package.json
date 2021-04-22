@@ -4,13 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "cypress:open":"cypress open",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run --reporter mochawesome",
+    "test:vrt": "percy exec cypress run --spec 'cypress/integration/vrt.spec.js'"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^7.1.0"
+    "@percy/cli": "^1.0.0-beta.48",
+    "@percy/cypress": "^3.1.0",
+    "cypress": "^7.1.0",
+    "mochawesome": "^6.2.2"
+  },
+  "dependencies": {
+    "mocha": "^8.3.2"
   }
 }
