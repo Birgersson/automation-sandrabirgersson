@@ -18,33 +18,39 @@ describe('Testsuite for navigation',function(){
         overviewFuncs.logOut(cy)
         indexFuncs.checkIndexPage(cy)
     })  
-        it('Navigate the site using View and Back-buttons', function(){
+        it('Navigate the site taking snapshots', function(){
+            cy.get('.btn').contains('Login')
             cy.percySnapshot('indexPage-Snapshot') 
             
             indexFuncs.validLogin(cy, targets.user1, targets.pw1)  
             overviewFuncs.checkTesterHotelOverviewPage(cy) //overviewpage
+            cy.contains('Reservations')
             cy.percySnapshot('OverviewPage-Snapshot')
 
             overviewFuncs.navigateToClientsPage(cy) //clientspage
             clientsFunc.checkClientsPage(cy)
+            cy.get(':nth-child(1) > .icon')
             cy.percySnapshot('ClientsPage-Snapshot')
 
             clientsFunc.navigateBack(cy)
             overviewFuncs.checkTesterHotelOverviewPage(cy)
             overviewFuncs.navigateToReservationsPage(cy)
             reservationFuncs.checkReservationsPage(cy)
+            cy.get('h3')
             cy.percySnapshot('ReservationsPage-Snapshot')
 
             reservationFuncs.navigateBack(cy)
             overviewFuncs.checkTesterHotelOverviewPage(cy)
             overviewFuncs.navigateToRoomsPage(cy)
             roomsFuncs.checkRoomsPage(cy)
+            cy.get(':nth-child(1) > .icon')
             cy.percySnapshot('RoomsPage-Snapshot')
 
             roomsFuncs.navigateBack(cy)
             overviewFuncs.checkTesterHotelOverviewPage(cy)
             overviewFuncs.navigateToBillsPage(cy)
             billsFuncs.checkBillsPage(cy)
+            cy.get('.id')
             cy.percySnapshot('BillsPage-Snapshot')
 
             billsFuncs.navigateBack(cy)
