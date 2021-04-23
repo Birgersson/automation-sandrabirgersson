@@ -24,10 +24,10 @@ describe('Testsuite for navigation',function(){
             clientsFunc.checkClientsPage(cy) //on clientspage
             clientsFunc.navigateCreateClient(cy)
             newclientsFunc.checkNewClientsPage(cy) //on new clientspage 
-            newclientsFunc.enterUser(cy, targets.name,targets.email,targets.tele)
+            newclientsFunc.enterUser(cy, targets.randomname,targets.randomemail,targets.randomtele)
             newclientsFunc.ClickSaveNewClient(cy)
             clientsFunc.checkClientsPage(cy)
-            clientsFunc.verifyUser(cy) 
+            cy.contains(targets.randomname) 
         })
 
     //delete one client
@@ -38,10 +38,10 @@ describe('Testsuite for navigation',function(){
             clientsFunc.checkClientsPage(cy) //on clientspage
             clientsFunc.navigateCreateClient(cy)
             newclientsFunc.checkNewClientsPage(cy) //on new clientspage 
-            newclientsFunc.enterUser(cy, targets.name, targets.email,targets.tele)
+            newclientsFunc.enterUser(cy, targets.randomname, targets.randomemail,targets.randomtele)
             newclientsFunc.ClickSaveNewClient(cy)
             clientsFunc.checkClientsPage(cy)
-            clientsFunc.verifyUser(cy) 
+            cy.contains(targets.randomname) 
             clientsFunc.open1ClientSubMenu(cy) //Deleting the first client... making sure i can delete a client. But not the one I created.... 
             clientsFunc.delete1Client(cy)
         })
